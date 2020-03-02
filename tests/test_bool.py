@@ -11,12 +11,4 @@ def test_basic_usage():
     assert h[1] == 3
     
     
-    h = hist.NamedHist(
-        hist.axis.Bool(name="S"),
-        hist.axis.Bool(name="L"),
-        hist.axis.Bool(name="F"))
-    
-    valid_s = [True, True, True, True]
-    valid_l = [True, True, False, False]
-    valid_f = [False, False, False, True]
-    h.fill(L=valid_l, S=valid_s, F=valid_f)
+
