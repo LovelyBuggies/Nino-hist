@@ -6,7 +6,7 @@ def test_basic_usage():
         axis.Regular(10, 0, 1, name="x")
     )  # NamedHist should require axis.Regular to have a name set
 
-    h.fill([0.35, 0.35, 0.45])  # Fill should be keyword only, with the names
+    h.fill(x=[0.35, 0.35, 0.45])  # Fill should be keyword only, with the names
 
     # Optional if you want these to fail
     assert h[2] == 0
