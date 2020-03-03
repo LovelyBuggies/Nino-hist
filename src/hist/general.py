@@ -1,9 +1,7 @@
 from .core import BaseHist
 import numpy as np
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from matplotlib.collections import PatchCollection
 
 
 class Hist(BaseHist):
@@ -67,6 +65,8 @@ class Hist(BaseHist):
         
         plt.xticks(size=labelsize)
         plt.yticks(size=labelsize)
+        plt.xlim(-3, 3)
+        plt.xlim(-3, 3)
         plt.xlabel(self.axes[0].metadata["title"], size=labelsize)
         plt.ylabel("Pull", size=labelsize)
         plt.bar(self.axes.centers[0], pulls, width=width)
