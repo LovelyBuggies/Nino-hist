@@ -1,6 +1,6 @@
 from .core import BaseHist
-import boost_histogram as bh
 import numpy as np
+
 
 class NamedHist(BaseHist):
     
