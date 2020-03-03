@@ -10,6 +10,7 @@ class Regular(bha.Regular):
         stop,
         *,
         name=None,
+        title=None,
         underflow=True,
         overflow=True,
         growth=False,
@@ -17,6 +18,7 @@ class Regular(bha.Regular):
         transform=None
     ):
         metadata = dict(name=name)
+        metadata["title"] = title
         super().__init__(
             bins,
             start,
@@ -36,6 +38,14 @@ class Regular(bha.Regular):
     @name.setter
     def name(self, value):
         self.metadata["name"] = value
+        
+    @property
+    def get_title(self):
+        return self.metadata["title"]
+
+    @name.setter
+    def set_title(self, value):
+        self.metadata["title"] = value
 
 
         
@@ -44,6 +54,7 @@ class Bool(bha.Regular):
         self,
         *,
         name=None,
+        title=None,
         underflow=False,
         overflow=False,
         growth=False,
@@ -51,6 +62,7 @@ class Bool(bha.Regular):
         transform=None
     ):
         metadata = dict(name=name)
+        metadata["title"] = title
         super().__init__(
             2, 0, 2,              # bins, start, stop
             metadata=metadata,
@@ -73,6 +85,14 @@ class Bool(bha.Regular):
     @name.setter
     def name(self, value):
         self.metadata["name"] = value
+        
+    @property
+    def get_title(self):
+        return self.metadata["title"]
+
+    @name.setter
+    def set_title(self, value):
+        self.metadata["title"] = value
 
 
 class Variable(bha.Variable):
