@@ -12,7 +12,7 @@ class Hist(BaseHist):
         # Type judgement
         if callable(func) == False:
             raise TypeError(
-                    "Only callable parameter is accepted in pull plot."
+                    "Callable argument func is supported in pull plot."
                 )
         
         '''
@@ -41,7 +41,7 @@ class Hist(BaseHist):
             labelsize = 3
         else:
             raise NameError(
-                    f"Size parameter {size} is not support." 
+                    f"Size argument size {size} is not support." 
                 )
             
         '''
@@ -64,40 +64,57 @@ class Hist(BaseHist):
             bar_color = 'cornflowerblue'
             
         
-        
+        '''
+        Computation and Fit
+        '''
         # Compute PDF values
         values = func(*self.axes.centers)*self.sum()*self.axes[0].widths
         yerr = np.sqrt(self.view())
         
         # Compute fit values: using func as fit model
-#         popt, pcov = curve_fit(func, self.axes.centers[0], self.view())
-#         fit = func(self.axes.centers[0], *popt)
+        print(callable(func), len(self.axes.centers[0]), len(self.view()))
+        popt, pcov = curve_fit(f=func, xdata=self.axes.centers[0], ydata=self.view())
+        fit = func(self.axes.centers[0], *popt)
         
         # Compute pulls: containing no INF values
         pulls = (self.view() - values) / yerr
         pulls = [x if np.abs(x) != np.inf else 0 for x in pulls]
         
-        # Construct a new figure
+        '''
+        Figure Construction: construct the figure and axes
+        '''
         if fig == None:
             fig = plt.figure(figsize=figsize)
-            grid = plt.GridSpec(4, 4, wspace=0.5, hspace=0.5)
+            grid = fig.add_gridspec(4, 4, wspace=0.5, hspace=0.5)
+        else:
+            grid = fig.add_gridspec(4, 4, wspace=0.5, hspace=0.5)
+            
+        if ax == None:
+            ax = fig.add_subplot(grid[0:3, :])
+        else:
+            pass
+        
+        if pull_ax == None:
+            pull_ax = fig.add_subplot(grid[3, :], sharex=ax)
+        else:
+            pass
         
         
         '''
         Main: plot the pulls using Matplotlib errorbar and plot methods
         '''
-        ax = fig.add_subplot(grid[0:3, :], ylabel="Counts")
-        
         ax.errorbar(self.axes.centers[0], self.view(), yerr,\
                      fmt=eb_fmt, ecolor=eb_ecolor, ms=eb_ms, mfc=eb_mfc, mec=eb_mec,\
                      capsize=eb_capsize, capthick=eb_capthick, alpha=eb_alpha, label='Obs')
         ax.plot(self.axes.centers[0], values, color=vp_color, ls=vp_ls, lw=vp_lw, alpha=vp_alpha, label='Value')
         ax.plot(self.axes.centers[0], (self.view()+values)/2, color=mp_color, ls = mp_ls,\
                                                         lw=mp_lw, alpha=mp_alpha, label='Mean')
-#         ax.plot(self.axes.centers[0], fit, color=fp_color, ls = fp_ls,lw=fp_lw, alpha=fp_alpha, label='Fit')
+        ax.plot(self.axes.centers[0], fit, color=fp_color, ls = fp_ls,lw=fp_lw, alpha=fp_alpha, label='Fit')
         ax.legend(prop={'size': lgs_size})
 
         ax.set_ylabel("Counts", size=labelsize)
+        plt.xticks(size=labelsize)
+        plt.yticks(size=labelsize)
         
         fig.add_axes(ax)
         
@@ -105,8 +122,6 @@ class Hist(BaseHist):
         '''
         Pull: plot the pulls using Matplotlib bar method
         '''
-        pull_ax = fig.add_subplot(grid[3, :], sharex=ax)
-        
         left_edge = self.axes.edges[0][0]
         right_edge = self.axes.edges[-1][-1]
         width = (right_edge - left_edge) / len(pulls)
@@ -125,8 +140,12 @@ class Hist(BaseHist):
         rect5 = patches.Rectangle([left_edge, 2], width * len(pulls), 1, color=pp_color, ec=pp_ec, alpha=pp_alpha/4)
         pull_ax.add_patch(rect5)
         
+        pull_ax.set_xlabel(self.axes[0].title, size=labelsize)
         pull_ax.set_ylabel("Pull", size=labelsize)
+        plt.xlim(left_edge, right_edge)
+        plt.xticks(size=labelsize)
+        plt.yticks(size=labelsize)
         
-        fig.add_axes(pull_ax, xlim=(left_edge, right_edge))
+        fig.add_axes(pull_ax)
         
         return fig, ax, pull_ax
