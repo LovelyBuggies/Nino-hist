@@ -1,4 +1,5 @@
 from .core import BaseHist
+from .theme import Theme
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -7,22 +8,22 @@ from scipy.optimize import curve_fit
 
 class Hist(BaseHist):
     
+    
     def pull_plot(self, func, fig=None, ax=None, pull_ax=None, size="Large", theme="Chrome"): 
         
         # Type judgement
         if callable(func) == False:
             raise TypeError(
-                    "Callable argument func is supported in pull plot."
+                    "Callable parameter func is supported in pull plot."
                 )
         
         '''
-        Size conversion:
-        We support the following options:
-            'H' -- huge figure, figuer size = (32, 32);
-            'L' -- large figure, figuer size = (16, 16);
-            'M' -- medium figure, figuer size = (8, 8);
-            'S' -- small figure, figuer size = (4, 4);
-            'T' -- tiny figure, figuer size = (2, 2);
+        Sizes:
+            - 'H': huge figure, figuer size = (32, 32);
+            - 'L': large figure, figuer size = (16, 16);
+            - 'M': medium figure, figuer size = (8, 8);
+            - 'S': small figure, figuer size = (4, 4);
+            - 'T': tiny figure, figuer size = (2, 2);
         '''
         if size.lower() == "huge" or size.lower() == "h":
             figsize = (32, 32)
@@ -41,28 +42,24 @@ class Hist(BaseHist):
             labelsize = 3
         else:
             raise NameError(
-                    f"Size argument size {size} is not support." 
+                    f"Size paramerter size {size} is not support." 
                 )
-            
+         
+        
         '''
-        Theme conversion:
-        We support the following options:
-            'Chrome' -- Chrome theme;
-            ...
-            ...
-            ...
+        Themes:
+            - 'Chrome'
+            - 'Spring'
+            - 'Summer'
+            - 'Autumn'
+            - 'Winter'
+            - 'Cool'
+            - 'Hot'
         '''
-        if theme.lower() == "chrome":
-            eb_ecolor = eb_mfc = eb_mec = 'forestgreen'
-            eb_fmt, eb_ms, eb_capsize, eb_capthick, eb_alpha = \
-                                    'o', labelsize/4, labelsize/12, labelsize/12, .8         # error bar
-            vp_color, vp_ls, vp_lw, vp_alpha = 'orange', '-', labelsize/3*2, .4              # values plot
-            mp_color, mp_ls, mp_lw, mp_alpha = 'indianred', '-', labelsize/6, .8             # mean plot
-            fp_color, fp_ls, fp_lw, fp_alpha = 'cornflowerblue', '-', labelsize/6, 1.        # fit plot
-            lgs_size = labelsize                                                             # legend size
-            pp_color, pp_alpha, pp_ec = 'cornflowerblue', .4, None                           # patches plot
-            bar_color = 'cornflowerblue'
-            
+        eb_ecolor, eb_mfc,eb_mec, eb_fmt, eb_ms, eb_capsize, eb_capthick, eb_alpha,\
+        vp_color, vp_ls, vp_lw, vp_alpha, mp_color, mp_ls, mp_lw, mp_alpha, fp_color,\
+        fp_ls, fp_lw, fp_alpha, lg_size, pp_color, pp_alpha, pp_ec, bar_color = Theme(theme).to_param(labelsize)
+        
         
         '''
         Computation and Fit
@@ -72,13 +69,13 @@ class Hist(BaseHist):
         yerr = np.sqrt(self.view())
         
         # Compute fit values: using func as fit model
-        print(callable(func), len(self.axes.centers[0]), len(self.view()))
         popt, pcov = curve_fit(f=func, xdata=self.axes.centers[0], ydata=self.view())
         fit = func(self.axes.centers[0], *popt)
         
         # Compute pulls: containing no INF values
         pulls = (self.view() - values) / yerr
         pulls = [x if np.abs(x) != np.inf else 0 for x in pulls]
+        
         
         '''
         Figure Construction: construct the figure and axes
@@ -105,12 +102,12 @@ class Hist(BaseHist):
         '''
         ax.errorbar(self.axes.centers[0], self.view(), yerr,\
                      fmt=eb_fmt, ecolor=eb_ecolor, ms=eb_ms, mfc=eb_mfc, mec=eb_mec,\
-                     capsize=eb_capsize, capthick=eb_capthick, alpha=eb_alpha, label='Obs')
-        ax.plot(self.axes.centers[0], values, color=vp_color, ls=vp_ls, lw=vp_lw, alpha=vp_alpha, label='Value')
+                     capsize=eb_capsize, capthick=eb_capthick, alpha=eb_alpha, label='Observation')
+        ax.plot(self.axes.centers[0], values, color=vp_color, ls=vp_ls, lw=vp_lw, alpha=vp_alpha, label='Prediction')
         ax.plot(self.axes.centers[0], (self.view()+values)/2, color=mp_color, ls = mp_ls,\
-                                                        lw=mp_lw, alpha=mp_alpha, label='Mean')
-        ax.plot(self.axes.centers[0], fit, color=fp_color, ls = fp_ls,lw=fp_lw, alpha=fp_alpha, label='Fit')
-        ax.legend(prop={'size': lgs_size})
+                                                        lw=mp_lw, alpha=mp_alpha, label='Arith-mean')
+        ax.plot(self.axes.centers[0], fit, color=fp_color, ls = fp_ls,lw=fp_lw, alpha=fp_alpha, label='Guass-fit')
+        ax.legend(prop={'size': lg_size})
 
         ax.set_ylabel("Counts", size=labelsize)
         plt.xticks(size=labelsize)
