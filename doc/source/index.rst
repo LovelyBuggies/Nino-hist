@@ -7,6 +7,10 @@
 Nino-hist's Documentation
 =========================
 
+.. toctree::
+   :maxdepth: 2
+   :caption: contents
+
 ------------
 Introduction
 ------------
