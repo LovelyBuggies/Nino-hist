@@ -40,11 +40,11 @@ class Regular(bha.Regular):
         self.metadata["name"] = value
         
     @property
-    def get_title(self):
+    def title(self):
         return self.metadata["title"]
 
     @name.setter
-    def set_title(self, value):
+    def title(self, value):
         self.metadata["title"] = value
 
 
@@ -87,11 +87,11 @@ class Bool(bha.Regular):
         self.metadata["name"] = value
         
     @property
-    def get_title(self):
+    def title(self):
         return self.metadata["title"]
 
     @name.setter
-    def set_title(self, value):
+    def title(self, value):
         self.metadata["title"] = value
 
 
