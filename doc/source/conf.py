@@ -51,6 +51,14 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# solve Sphinx error:
+# Solve Sphinx error:
 # master file /home/docs/checkouts/readthedocs.org/user_builds/nino-hist/checkouts/latest/doc/source/contents.rst not found
 master_doc = 'index'
+
+# Latex support
+latex_engine = 'xelatex'
+# latex_elements = {}
+latex_documents = [
+    (master_doc, 'Nino-hist.tex', 'Nino-hist',
+     'Author: Nino', 'manual', True),
+]
