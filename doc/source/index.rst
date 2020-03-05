@@ -2,10 +2,6 @@
 Nino-hist's Documentation
 =========================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: contents
-
 
 Introduction
 ------------
@@ -20,6 +16,7 @@ Contents
 .. toctree::
    :maxdepth: 2
    :titlesonly:
+   :glob:
 
    installation/index
    user-guide/index
