@@ -8,3 +8,6 @@ Examples
    :titlesonly:
    :glob:
 
+   axes/index
+   namedhist/index
+   hist/index

@@ -9,3 +9,5 @@ User Guide
    :glob:
 
    axes
+   namedhist
+   hist

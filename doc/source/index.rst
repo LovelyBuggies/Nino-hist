@@ -12,7 +12,7 @@ To get an idea of creating histograms in Nino-hist looks like, take a look at th
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :titlesonly:
    :caption: Contents
    :glob:
@@ -24,7 +24,7 @@ To get an idea of creating histograms in Nino-hist looks like, take a look at th
    support/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :titlesonly:
    :caption: API Reference
    :glob:
