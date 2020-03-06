@@ -210,3 +210,4 @@ I like using [pre-commit](https://pre-commit.com) to handle style. The styling
 is checked in CI; you don't have to make this check pass if you don't want to
 (though adding and enabling pre-commit is easy).
 
+Exclude patterns like '_build', '**.ipynb_checkpoints', 'Thumbs.db', '.DS_Store', '.env' in this project. For example, to remove all `.DS_Store`, using command `find ./ -name ".DS_Store" -depth -exec rm {} \;` in root path.
