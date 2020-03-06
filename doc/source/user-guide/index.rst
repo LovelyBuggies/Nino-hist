@@ -8,4 +8,4 @@ User Guide
    :titlesonly:
    :glob:
 
-   boost-hist
+   axes

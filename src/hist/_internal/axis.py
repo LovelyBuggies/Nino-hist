@@ -31,6 +31,11 @@ class Regular(bha.Regular):
             transform=transform,
         )
     
+    def __repr__(self):
+        return "{self.__class__.__name__}({args}{kwargs})".format(
+            self=self, args=self._repr_args(), kwargs=self._repr_kwargs()
+    )
+    
     @property
     def name(self):
         '''
@@ -70,7 +75,9 @@ class Bool(bha.Regular):
         metadata = dict(name=name)
         metadata["title"] = title
         super().__init__(
-            2, 0, 2,
+            2, 
+            0, 
+            2,
             metadata=metadata,
             underflow=underflow,
             overflow=overflow,
@@ -109,6 +116,31 @@ class Bool(bha.Regular):
 
 
 class Variable(bha.Variable):
+    
+    def __init__(
+        self,
+        edges,
+        *,
+        name=None,
+        title=None,
+        underflow=True,
+        overflow=True,
+        growth=False
+    ):
+        metadata = dict(name=name)
+        metadata["title"] = title
+        super().__init__(
+            edges,
+            metadata=metadata,
+            underflow=underflow,
+            overflow=overflow,
+            growth=growth
+        )
+    
+    def __repr__(self):
+        return "{self.__class__.__name__}({args}{kwargs})".format(
+            self=self, args=self._repr_args(), kwargs=self._repr_kwargs()
+    )
 
     @property
     def name(self):
@@ -135,6 +167,33 @@ class Variable(bha.Variable):
 
 
 class Integer(bha.Integer):
+    
+    def __init__(
+        self,
+        start,
+        stop,
+        *,
+        name=None,
+        title=None,
+        underflow=True,
+        overflow=True,
+        growth=False
+    ):
+        metadata = dict(name=name)
+        metadata["title"] = title
+        super().__init__(
+            start,
+            stop,
+            metadata=metadata,
+            underflow=underflow,
+            overflow=overflow,
+            growth=growth
+        )
+    
+    def __repr__(self):
+        return "{self.__class__.__name__}({args}{kwargs})".format(
+            self=self, args=self._repr_args(), kwargs=self._repr_kwargs()
+    )
 
     @property
     def name(self):
@@ -161,6 +220,27 @@ class Integer(bha.Integer):
 
 
 class IntCategory(bha.IntCategory):
+    
+    def __init__(
+        self,
+        categories=None,
+        *,
+        name=None,
+        title=None,
+        growth=False
+    ):
+        metadata = dict(name=name)
+        metadata["title"] = title
+        super().__init__(
+            categories,
+            metadata=metadata,
+            growth=growth
+        )
+    
+    def __repr__(self):
+        return "{self.__class__.__name__}({args}{kwargs})".format(
+            self=self, args=self._repr_args(), kwargs=self._repr_kwargs()
+    )
 
     @property
     def name(self):
@@ -187,6 +267,27 @@ class IntCategory(bha.IntCategory):
 
 
 class StrCategory(bha.StrCategory):
+    
+    def __init__(
+        self,
+        categories=None,
+        *,
+        name=None,
+        title=None,
+        growth=False
+    ):
+        metadata = dict(name=name)
+        metadata["title"] = title
+        super().__init__(
+            categories,
+            metadata=metadata,
+            growth=growth
+        )
+    
+    def __repr__(self):
+        return "{self.__class__.__name__}({args}{kwargs})".format(
+            self=self, args=self._repr_args(), kwargs=self._repr_kwargs()
+    )
     
     @property
     def name(self):

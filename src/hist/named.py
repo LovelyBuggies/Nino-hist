@@ -21,7 +21,7 @@ class NamedHist(BaseHist):
                     values.append(val)
 
         d = dict(zip(indices, values))
-        d = sorted(d.items(), key=lambda item:item[1], reverse=True)
+        d = sorted(d.items(), key=lambda item:item[0])
         nd = np.asarray(d, dtype=object)
         super().fill(*(nd.ravel()[1::2]))
 

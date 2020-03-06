@@ -48,6 +48,7 @@ Pull-plot pro implementation
 .. _`Matplotlib.Axes`: https://matplotlib.org/api/axes_api.html?highlight=axes#module-matplotlib.axes
 .. _`Matplotlib.Figure`: https://matplotlib.org/api/figure_api.html?highlight=figure#module-matplotlib.figure
 
+
 GUI design
 ------------------
 
@@ -63,4 +64,19 @@ GUI design
 .. _`Tkinter`: https://docs.python.org/3/library/tkinter.html
 .. _`wxPython`: https://wxpython.org/
 .. _`Jython`: https://www.jython.org/
+
+
+Bool axis transformation
+------------------------------------
+
+* **Project description:** Expand transformation to Bool axis
+* **Objective:** 
+
+	* All transformation operations for Bool axis
+	* Allow functional transformation by Callable
+
+* **Possible tools:** `Boost_histogram`_
+* **Difficulty:** Medium
+
+.. _`Boost_histogram`: https://boost-histogram.readthedocs.io/en/latest/index.html
 
