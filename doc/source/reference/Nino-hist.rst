@@ -1,11 +1,15 @@
-hist package
-============
+
+
+Nino-hist package
+=========================
+
+.. Recommended toctree here
 
 Submodules
 ----------
 
 hist.axis module
-----------------
+~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.axis
    :members:
@@ -13,7 +17,7 @@ hist.axis module
    :show-inheritance:
 
 hist.core module
-----------------
+~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.core
    :members:
@@ -21,7 +25,7 @@ hist.core module
    :show-inheritance:
 
 hist.general module
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.general
    :members:
@@ -29,7 +33,7 @@ hist.general module
    :show-inheritance:
 
 hist.named module
------------------
+~~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.named
    :members:
@@ -37,7 +41,7 @@ hist.named module
    :show-inheritance:
 
 hist.theme module
------------------
+~~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.theme
    :members:
@@ -45,7 +49,7 @@ hist.theme module
    :show-inheritance:
 
 hist.version module
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: hist.version
    :members:

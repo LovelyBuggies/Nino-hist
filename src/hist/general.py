@@ -1,6 +1,6 @@
 from .core import BaseHist
 
-__all__ = ("Theme")
+__all__ = ("Theme",)
 
 from .theme import Theme
 import numpy as np
