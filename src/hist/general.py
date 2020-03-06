@@ -13,7 +13,10 @@ class Hist(BaseHist):
     
     def pull_plot(self, func, fig=None, ax=None, pull_ax=None, size="Large", theme="Chrome"): 
         '''
-            Make a pull plot.
+            Make a pull plot. Inputing the figure (new figure if None),\
+            ax (new axis if None), pull_ax (new axis if None), size \
+            (default "Large"), and theme (default "Chrome") to this func\
+            will generate a pull plot and return the figure and axes.
         '''
         # Type judgement
         if callable(func) == False:
