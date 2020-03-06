@@ -1,4 +1,7 @@
 from .core import BaseHist
+
+__all__ = ("Theme")
+
 from .theme import Theme
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,9 +11,10 @@ from scipy.optimize import curve_fit
 
 class Hist(BaseHist):
     
-    
     def pull_plot(self, func, fig=None, ax=None, pull_ax=None, size="Large", theme="Chrome"): 
-        
+        '''
+            Make a pull plot.
+        '''
         # Type judgement
         if callable(func) == False:
             raise TypeError(

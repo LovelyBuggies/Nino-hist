@@ -4,20 +4,14 @@ import numpy as np
 
 class NamedHist(BaseHist):
     
-    
     def fill(self, **args):
         """
-        Insert data into the histogram.
-        Parameters
-        ----------
-        *args : Union[Array[float], Array[int], Array[str], float, int, str]
-            Provide one value or array per dimension.
-        weight : List[Union[Array[float], Array[int], Array[str], float, int, str]]]
-            Provide weights (only if the histogram storage supports it)
-        sample : List[Union[Array[float], Array[int], Array[str], float, int, str]]]
-            Provide samples (only if the histogram storage supports it)
+            Insert data into the histogram using names and return a \
+            NamedHist object. Params must contain the name\/s of the \
+            axis\/es. Note that this is only the fill method for \
+            NamedHist object. This method doesn't support Hist object.
         """
-        
+                
         indices = []
         values = []
         for name, val in args.items():
@@ -30,6 +24,7 @@ class NamedHist(BaseHist):
         d = sorted(d.items(), key=lambda item:item[1], reverse=True)
         nd = np.asarray(d, dtype=object)
         super().fill(*(nd.ravel()[1::2]))
-    
-    pass
+
+        return self
+
 

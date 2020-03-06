@@ -6,6 +6,8 @@
 # Convenient access to the version number
 from .version import version as __version__
 
+__all__ = ("Hist", "NamedHist",)
+
 from .general import Hist
 from .named import NamedHist
 

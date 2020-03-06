@@ -1,11 +1,13 @@
-
 class Theme(object):
     
     def __init__(self, theme):
         self._theme = theme
         
-    def to_param(self, size):
-        
+    def to_param(self, size): 
+        '''
+        Change theme to params.
+        '''
+
         '''
         Name Standard:
             - eb: error bar plot

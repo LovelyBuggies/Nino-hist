@@ -33,6 +33,9 @@ class Regular(bha.Regular):
     
     @property
     def name(self):
+        '''
+        Get or set the name for the Regular axis
+        '''
         return self.metadata["name"]
 
     @name.setter
@@ -41,6 +44,9 @@ class Regular(bha.Regular):
         
     @property
     def title(self):
+        '''
+        Get or set the title for the Regular axis
+        '''
         return self.metadata["title"]
 
     @title.setter
@@ -64,7 +70,7 @@ class Bool(bha.Regular):
         metadata = dict(name=name)
         metadata["title"] = title
         super().__init__(
-            2, 0, 2,              # bins, start, stop
+            2, 0, 2,
             metadata=metadata,
             underflow=underflow,
             overflow=overflow,
@@ -80,6 +86,9 @@ class Bool(bha.Regular):
     
     @property
     def name(self):
+        '''
+        Get or set the name for the Bool axis
+        '''
         return self.metadata["name"]
 
     @name.setter
@@ -88,6 +97,9 @@ class Bool(bha.Regular):
         
     @property
     def title(self):
+        '''
+        Get or set the title for the Bool axis
+        '''
         return self.metadata["title"]
 
     @title.setter
@@ -95,17 +107,105 @@ class Bool(bha.Regular):
         self.metadata["title"] = value
 
 
+
 class Variable(bha.Variable):
-    pass
+
+    @property
+    def name(self):
+        '''
+        Get or set the name for the Variable axis
+        '''
+        return self.metadata["name"]
+
+    @name.setter
+    def name(self, value):
+        self.metadata["name"] = value
+        
+    @property
+    def title(self):
+        '''
+        Get or set the title for the Variable axis
+        '''
+        return self.metadata["title"]
+
+    @title.setter
+    def title(self, value):
+        self.metadata["title"] = value
+
 
 
 class Integer(bha.Integer):
-    pass
+
+    @property
+    def name(self):
+        '''
+        Get or set the name for the Integer axis
+        '''
+        return self.metadata["name"]
+
+    @name.setter
+    def name(self, value):
+        self.metadata["name"] = value
+        
+    @property
+    def title(self):
+        '''
+        Get or set the title for the Integer axis
+        '''
+        return self.metadata["title"]
+
+    @title.setter
+    def title(self, value):
+        self.metadata["title"] = value
+
 
 
 class IntCategory(bha.IntCategory):
-    pass
+
+    @property
+    def name(self):
+        '''
+        Get or set the name for the IntCategory axis
+        '''
+        return self.metadata["name"]
+
+    @name.setter
+    def name(self, value):
+        self.metadata["name"] = value
+        
+    @property
+    def title(self):
+        '''
+        Get or set the title for the IntCategory axis
+        '''
+        return self.metadata["title"]
+
+    @title.setter
+    def title(self, value):
+        self.metadata["title"] = value
+
 
 
 class StrCategory(bha.StrCategory):
-    pass
+    
+    @property
+    def name(self):
+        '''
+        Get or set the name for the StrCategory axis
+        '''
+        return self.metadata["name"]
+
+    @name.setter
+    def name(self, value):
+        self.metadata["name"] = value
+        
+    @property
+    def title(self):
+        '''
+        Get or set the title for the StrCategory axis
+        '''
+        return self.metadata["title"]
+
+    @title.setter
+    def title(self, value):
+        self.metadata["title"] = value

@@ -1,7 +1,10 @@
 .. _development:
 
+Development
+===========
+
 Development Guideline
-=====================
+---------------------
 
 Nino-hist development is done in a `git`_ repository on `github`_. Continuous integration testing is provided by `travis CI`_, code coverage is measured with
 `coveralls.io`_.
@@ -37,10 +40,12 @@ Pull-plot pro implementation
 
 * **Project description:** Release a more professional pull-plot version (i.e., pull-plot-pro) for Hist's pull-plot method 
 * **Objective:** 
-	- Allow user to customize pull-plot
-	- Enable user to select type of plots in the pull-plot
-	- Support passing more specific parameters
-	- Specify the same properties for different plots, e.g. color, linewidth, linestyle, etc.
+
+	* Allow user to customize pull-plot
+	* Enable user to select type of plots in the pull-plot
+	* Support passing more specific parameters
+	* Specify the same properties for different plots, e.g. color, linewidth, linestyle, etc.
+
 * **Possible tools:** `Matplotlib.Axes`_, `Matplotlib.Figure`_
 * **Difficulty:** Easy
 
@@ -52,8 +57,10 @@ GUI design
 
 * **Project description:** Design a graphic user interface for Nino-hist to simplify users' operations
 * **Objective:** 
-	- Create GUI playground 
-	- Support Nino-hist's functionality
+
+	* Create GUI playground 
+	* Support Nino-hist's functionality
+
 * **Possible tools:** `Tkinter`_, `wxPython`_, `Jython`_
 * **Difficulty:** Hard
 

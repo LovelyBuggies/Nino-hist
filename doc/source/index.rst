@@ -10,20 +10,27 @@ Introduction
 
 To get an idea of creating histograms in Nino-hist looks like, take a look at the Examples. Once you have a feel for what is involved in using Nino-hist, we recommend you start by following the instructions in :doc:`Installation </installation/index>`. Then, go through the :doc:`User Guide </user-guide/index>`, and read the :doc:`Reference </reference/index>` documentation. We value your contributions and you can follow the instructions in :doc:`Development </development/index>`. Finally, if you’re having problems, please do let us know at our :doc:`Support </support/index>` page.
 
-Contents
---------
 
 .. toctree::
    :maxdepth: 2
    :titlesonly:
+   :caption: Contents
    :glob:
 
    installation/index
    user-guide/index
    examples/index
-   reference/index
    development/index
    support/index
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+   :caption: API Reference
+   :glob:
+
+   reference/index
+
 
 Indices and tables
 ------------------
