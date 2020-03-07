@@ -16,6 +16,5 @@ python:
   version: 3.7
   install:
      - requirements: doc/requirements.txt
-
-submodules:
-  exclude: all
+     - method: pip
+        path: .
