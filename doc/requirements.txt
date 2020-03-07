@@ -8,7 +8,6 @@ scipy>=0.19
 
 ipykernel
 numpy
-matplotlib
 pandas
 sphinxcontrib-bibtex
 sphinxcontrib-svg2pdfconverter
