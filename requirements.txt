@@ -5,3 +5,13 @@ pytest>=5
 setuptools>=42
 setuptools_scm>=3.4
 scipy>=0.19
+
+ipykernel
+numpy
+matplotlib
+pandas
+sphinxcontrib-bibtex
+sphinxcontrib-svg2pdfconverter
+ipywidgets
+sphinx-copybutton
+nbsphinx
