@@ -1,25 +1,3 @@
-## Evaluations
-
-Please do not fork this repository; instead, [click the green "Use this
-template"](https://github.com/henryiii/mini_hist/generate) button to make a
-full, unlinked copy. That way you can keep your work a bit more private. You'll
-need to send me the GitHub address of your copy. (If you find a typo in the
-instructions, then you could fork this repository to fix that, but don't put
-answers to the evaluation in a linked fork!)
-
-You evaluation should contain the following:
-
-* At least one of the projects (1 or 2) completed
-* Tests for your new additions
-* Some documentation for methods or functions added (as docstrings)
-* Inline comments if something is non-obvious or non-trivial (no need to go
-  overboard here!)
-* A notebook with an example and bit of description of your new feature(s) or
-  plots.
-
-Writing nice, readable code and following good git practices will help get a
-high ranking.
-
 ## Installation
 
 The recommended way of setting up a development environment:
