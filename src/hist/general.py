@@ -52,7 +52,6 @@ class Hist(BaseHist):
                     f"Size paramerter size {size} is not support." 
                 )
          
-        
         '''
         Themes:
             - 'Chrome'
@@ -156,17 +155,18 @@ class Hist(BaseHist):
 
     
     
+    
     def pull_plot_pro(self, func, fig=None, ax=None, pull_ax=None,\
                     eb_fmt='o', eb_ecolor='forestgreen', eb_elinewidth=2, eb_capsize=2, eb_barsabove=False,\
                     eb_lolims=False, eb_uplims=False, eb_xlolims=False, eb_xuplims=False, eb_errorevery=1,\
                     eb_capthick=2, eb_data=None, eb_alpha=.9, eb_aa=False, eb_c=None, eb_ds=None, eb_ls=None, eb_lw=1.,\
-                    eb_mec='forestgreen', eb_mew=1., eb_mfc='forestgreen', eb_mfcalt=None, eb_ms=8.,\
+                    eb_mec='forestgreen', eb_mew=1., eb_mfc='forestgreen', eb_mfcalt=None, eb_ms=6.,\
                     vp_scalex=True, vp_scaley=True, vp_data=None, vp_alpha=.4, vp_aa=False, vp_c='gold', vp_ds=None,\
                     vp_ls='-', vp_lw=16., vp_mec=None, vp_mew=0., vp_mfc=None, vp_mfcalt=None, vp_ms=0.,\
                     mp_scalex=True, mp_scaley=True, mp_data=None, mp_alpha=.8, mp_aa=False, mp_c='indianred', mp_ds=None,\
-                    mp_ls=':', mp_lw=4., mp_mec=None, mp_mew=0., mp_mfc=None, mp_mfcalt=None, mp_ms=0.,\
+                    mp_ls=':', mp_lw=3., mp_mec=None, mp_mew=0., mp_mfc=None, mp_mfcalt=None, mp_ms=0.,\
                     fp_scalex=True, fp_scaley=True, fp_data=None, fp_alpha=.8, fp_aa=False, fp_c='cornflowerblue',\
-                    fp_ds=None, fp_ls='-', fp_lw=4., fp_mec=None, fp_mew=0., fp_mfc=None, fp_mfcalt=None, fp_ms=0.,\
+                    fp_ds=None, fp_ls='-', fp_lw=3., fp_mec=None, fp_mew=0., fp_mfc=None, fp_mfcalt=None, fp_ms=0.,\
                     bar_bottom=None, bar_align='center', bar_data=None, bar_alpha=1., bar_aa=None, bar_ec=None,\
                     bar_fc='cornflowerblue', bar_ls=None, bar_lw=0.,\
                     pp_num=3, pp_angle=0., pp_alpha=.618, pp_aa=None, pp_ec=None, pp_fc='cornflowerblue', pp_ls=None,\
@@ -204,7 +204,7 @@ class Hist(BaseHist):
         Default Construction: construct the figure and axes
         '''
         if fig == None:
-            fig = plt.figure(figsize=(16, 16))
+            fig = plt.figure(figsize=(8, 8))
             grid = fig.add_gridspec(4, 4, wspace=0.5, hspace=0.5)
         else:
             grid = fig.add_gridspec(4, 4, wspace=0.5, hspace=0.5)
