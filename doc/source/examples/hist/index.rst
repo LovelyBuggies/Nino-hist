@@ -8,3 +8,5 @@ Hist
 
    hist-simple
    hist-cusfig
+   hist-pro
+   hist-cusfig-pro
