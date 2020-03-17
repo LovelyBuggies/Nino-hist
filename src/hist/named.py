@@ -27,4 +27,32 @@ class NamedHist(BaseHist):
 
         return self
 
+    
+    def __getitem__(self, index):
+        """
+            Get histogram item.
+        """
+        if isinstance(index, dict):
+            k = list(index.keys())[0]
+            if isinstance(k, str):
+                        for idx, axis in enumerate(self.axes):
+                            if k == axis.name:
+                                index[idx] = index.pop(k)
+                                break
+        
+        return super().__getitem__(index)
 
+    
+    def __setitem__(self, index, value):
+        """
+            Set histogram item.
+        """
+        if isinstance(index, dict):
+            k = list(index.keys())[0]
+            if isinstance(k, str):
+                        for idx, axis in enumerate(self.axes):
+                            if k == axis.name:
+                                index[idx] = index.pop(k)
+                                break
+        
+        return super().__getitem__(index, value)
