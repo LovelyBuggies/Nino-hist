@@ -15,6 +15,12 @@ def test_basic_usage():
     assert h[5] == 0
 
     # Example of a test that should be made to pass:
+    assert h[{0:2}] == 0 
+    assert h[{0:3}] == 2 
+    assert h[{0:4}] == 1 
+    assert h[{0:5}] == 0 
+    
+    # Example of a test that should be made to pass:
     assert h[{'x':2}] == 0 
     assert h[{'x':3}] == 2 
     assert h[{'x':4}] == 1 
