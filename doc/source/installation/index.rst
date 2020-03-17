@@ -9,6 +9,7 @@ The recommended way of setting up a development environment: ::
    source .env/bin/activate        # Use the new environment
    pip install -r requirements.txt # Install the package requirements
    pip install -e .                # Install this package in editable mode
+   python -m ipykernel install --user --name nino-hist    # Install nino-hist jupyter kernel
 
 If you want to use Conda, go ahead. Also feel free to use a different directory name, etc. We will be requiring Python 3 here, at least 3.6 or better.
 

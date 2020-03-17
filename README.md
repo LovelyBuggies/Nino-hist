@@ -7,6 +7,7 @@ python3 -m venv .env            # Make a new environment in ./.env/
 source .env/bin/activate        # Use the new environment
 pip install -r requirements.txt # Install the package requirements
 pip install -e .                # Install this package in editable mode
+python -m ipykernel install --user --name nino-hist    # Install nino-hist jupyter kernel
 ```
 
 > If you want to use Conda, go ahead. Also feel free to use a different
