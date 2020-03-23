@@ -15,13 +15,11 @@ def test_basic_usage():
     assert h[4] == 1
     assert h[5] == 0
 
-    # Example of a test that should be made to pass:
     assert h[{0:2}] == 0 
     assert h[{0:3}] == 2 
     assert h[{0:4}] == 1 
     assert h[{0:5}] == 0 
     
-    # Example of a test that should be made to pass:
     assert h[{'x':2}] == 0 
     assert h[{'x':3}] == 2 
     assert h[{'x':4}] == 1 
@@ -50,3 +48,7 @@ def test_basic_usage():
     assert z_one_only[5,4] == 3
     assert z_one_only[5,5] == 0
     assert z_one_only[6,5] == 0
+    
+    assert axis.Integer(-1, 1, name='my_Integer')
+    assert axis.Regular(10, -1, 1, name='myInteger_')
+    assert axis.Bool(name='myInteger_0')
