@@ -49,7 +49,6 @@ def test_basic_usage():
     assert z_one_only[5,5] == 0
     assert z_one_only[6,5] == 0
     
-    assert hist.axis.Integer(-1, 1, name='my_Integer')
-    assert hist.axis.Integer(-1, 1, name='myInteger_')
-    assert hist.axis.Integer(-1, 1, name='myInteger_0')
-    assert hist.axis.Integer(-1, 1, name='0_myInteger')
+    assert axis.Integer(-1, 1, name='my_Integer')
+    assert axis.Regular(10, -1, 1, name='myInteger_')
+    assert axis.Bool(name='myInteger_0')
