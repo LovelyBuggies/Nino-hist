@@ -1,3 +1,4 @@
+import re
 import boost_histogram.axis as bha
 
 
@@ -17,7 +18,9 @@ class Regular(bha.Regular):
         circular=False,
         transform=None
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             bins,
@@ -72,7 +75,9 @@ class Bool(bha.Regular):
         circular=False,
         transform=None
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             2, 
@@ -127,7 +132,9 @@ class Variable(bha.Variable):
         overflow=True,
         growth=False
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             edges,
@@ -179,7 +186,9 @@ class Integer(bha.Integer):
         overflow=True,
         growth=False
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             start,
@@ -229,7 +238,9 @@ class IntCategory(bha.IntCategory):
         title=None,
         growth=False
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             categories,
@@ -276,7 +287,9 @@ class StrCategory(bha.StrCategory):
         title=None,
         growth=False
     ):
-        metadata = dict(name=name)
+        if re.match(r"^[0-9a-zA-Z][0-9a-zA-Z_]*", name).group() == name:
+            metadata = dict(name=name)
+        else: raise Exception("Name should be a Python Identifier.")
         metadata["title"] = title
         super().__init__(
             categories,
