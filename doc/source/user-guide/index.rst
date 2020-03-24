@@ -11,3 +11,4 @@ User Guide
    axes
    namedhist
    hist
+   integration
