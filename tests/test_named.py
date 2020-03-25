@@ -3,13 +3,17 @@ import boost_histogram as bh
 
 
 def test_basic_usage():
+    '''
+        Test basic usage -- whether NamedHist are properly derived from\
+        boost-histogram and whether it can be filled by names.
+    '''
+    
+    # Test normal NamedHist
     h = NamedHist(
         axis.Regular(10, 0, 1, name="x")
-    )  # NamedHist should require axis.Regular to have a name set
+    )
+    h.fill(x=[0.35, 0.35, 0.45])
 
-    h.fill(x=[0.35, 0.35, 0.45])  # Fill should be keyword only, with the names
-
-    # Optional if you want these to fail
     assert h[2] == 0
     assert h[3] == 2
     assert h[4] == 1
@@ -23,14 +27,14 @@ def test_basic_usage():
     assert h[{'x':2}] == 0 
     assert h[{'x':3}] == 2 
     assert h[{'x':4}] == 1 
-    assert h[{'x':5}] == 0 
-
+    assert h[{'x':5}] == 0
     
+    # Test multi-axis NamedHist
     h = NamedHist(
         axis.Regular(10, 0, 1, name="x"),
         axis.Regular(10, 0, 1, name="y"),
         axis.Integer(0, 2, name="z")
-    )  # NamedHist should require axis.Regular to have a name set
+    )
 
     h.fill(x=[0.35, 0.35, 0.35, 0.45, 0.55, 0.55, 0.55], 
            y=[0.35, 0.35, 0.45, 0.45, 0.45, 0.45, 0.45],
@@ -48,7 +52,3 @@ def test_basic_usage():
     assert z_one_only[5,4] == 3
     assert z_one_only[5,5] == 0
     assert z_one_only[6,5] == 0
-    
-    assert axis.Integer(-1, 1, name='my_Integer')
-    assert axis.Regular(10, -1, 1, name='myInteger_')
-    assert axis.Bool(name='myInteger_0')
