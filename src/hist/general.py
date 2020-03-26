@@ -155,29 +155,7 @@ class Hist(BaseHist):
 
     
     
-    
-    def pull_plot_pro(self, func, fig=None, ax=None, pull_ax=None,\
-                    eb_fmt='o', eb_ecolor='forestgreen', eb_elinewidth=2, eb_capsize=2, eb_barsabove=False,\
-                    eb_lolims=False, eb_uplims=False, eb_xlolims=False, eb_xuplims=False, eb_errorevery=1,\
-                    eb_capthick=2, eb_data=None, eb_alpha=.9, eb_aa=False, eb_c=None, eb_ds=None, eb_ls=None, eb_lw=1.,\
-                    eb_mec='forestgreen', eb_mew=1., eb_mfc='forestgreen', eb_mfcalt=None, eb_ms=6.,\
-                    vp_scalex=True, vp_scaley=True, vp_data=None, vp_alpha=.4, vp_aa=False, vp_c='gold', vp_ds=None,\
-                    vp_ls='-', vp_lw=16., vp_mec=None, vp_mew=0., vp_mfc=None, vp_mfcalt=None, vp_ms=0.,\
-                    mp_scalex=True, mp_scaley=True, mp_data=None, mp_alpha=.8, mp_aa=False, mp_c='indianred', mp_ds=None,\
-                    mp_ls=':', mp_lw=3., mp_mec=None, mp_mew=0., mp_mfc=None, mp_mfcalt=None, mp_ms=0.,\
-                    fp_scalex=True, fp_scaley=True, fp_data=None, fp_alpha=.8, fp_aa=False, fp_c='cornflowerblue',\
-                    fp_ds=None, fp_ls='-', fp_lw=3., fp_mec=None, fp_mew=0., fp_mfc=None, fp_mfcalt=None, fp_ms=0.,\
-                    bar_bottom=None, bar_align='center', bar_data=None, bar_alpha=1., bar_aa=None, bar_ec=None,\
-                    bar_fc='cornflowerblue', bar_ls=None, bar_lw=0.,\
-                    pp_num=3, pp_angle=0., pp_alpha=.618, pp_aa=None, pp_ec=None, pp_fc='cornflowerblue', pp_ls=None,\
-                    pp_lw=0.,\
-                    # other plot params
-                     ): 
-        '''
-            Pull plot pro, receiving specific params to construct pull plot.\
-            Kwargs are not thorough currently, abbr and alpha are included.\
-            Reference: MPL Axes.errorbar, Axes.plot, Axes.bar, 
-        '''
+    def pull_plot_pro(self, func, fig=None, ax=None, pull_ax=None, **kwargs):
         # Type judgement
         if callable(func) == False:
             raise TypeError(
@@ -201,7 +179,7 @@ class Hist(BaseHist):
         
         
         '''
-        Default Construction: construct the figure and axes
+        Default Figure: construct the figure and axes
         '''
         if fig == None:
             fig = plt.figure(figsize=(8, 8))
@@ -221,20 +199,52 @@ class Hist(BaseHist):
         
         
         '''
+        Keyword Argument Conversion: convert the keywork arguments to several independent arguments
+        '''
+        eb_kwargs = dict()
+        for kw in kwargs.keys():
+            if kw[:2] == 'eb':
+                eb_kwargs[kw[3:]] = kwargs[kw]
+        
+        vp_kwargs = dict()
+        for kw in kwargs.keys():
+            if kw[:2] == 'vp':
+                vp_kwargs[kw[3:]] = kwargs[kw]
+        
+        mp_kwargs = dict()
+        for kw in kwargs.keys():
+            if kw[:2] == 'mp':
+                mp_kwargs[kw[3:]] = kwargs[kw]
+                
+        fp_kwargs = dict()
+        for kw in kwargs.keys():
+            if kw[:2] == 'fp':
+                fp_kwargs[kw[3:]] = kwargs[kw]
+        
+        bar_kwargs = dict()
+        for kw in kwargs.keys():
+            if kw[:3] == 'bar':
+                # disable bar width arguments
+                if kw == 'bar_width': 
+                    continue
+                bar_kwargs[kw[4:]] = kwargs[kw]
+                
+        pp_kwargs, pp_num = dict(), 3
+        for kw in kwargs.keys():
+            if kw[:2] == 'pp':
+                # allow pp_num
+                if kw == 'pp_num':
+                    pp_num = kwargs[kw]
+                    continue
+                pp_kwargs[kw[3:]] = kwargs[kw]
+        
+        '''
         Main: plot the pulls using Matplotlib errorbar and plot methods
         '''
-        ax.errorbar(self.axes.centers[0], self.view(), yerr,\
-                    fmt=eb_fmt, ecolor=eb_ecolor, elinewidth=eb_elinewidth, capsize=eb_capsize, barsabove=eb_barsabove,\
-                    lolims=eb_lolims, uplims=eb_uplims, xlolims=eb_xlolims, xuplims=eb_xuplims, errorevery=eb_errorevery,\
-                    capthick=eb_capthick, data=eb_data, alpha=eb_alpha, aa=eb_aa, c=eb_c, ds=eb_ds, ls=eb_ls, lw=eb_lw,\
-                    mec=eb_mec, mew=eb_mew, mfc=eb_mfc, mfcalt=eb_mfcalt, ms=eb_ms)
-        ax.plot(self.axes.centers[0], values, scalex=vp_scalex, scaley=vp_scaley, data=vp_data, alpha=vp_alpha, aa=vp_aa,\
-                    c=vp_c, ds=vp_ds, ls=vp_ls, lw=vp_lw, mec=vp_mec, mew=vp_mew, mfc=vp_mfc, mfcalt=vp_mfcalt, ms=vp_ms)
-        ax.plot(self.axes.centers[0], (self.view()+values)/2, scalex=mp_scalex, scaley=mp_scaley, data=mp_data,\
-                    alpha=mp_alpha, aa=mp_aa, c=mp_c, ds=mp_ds, ls=mp_ls, lw=mp_lw, mec=mp_mec, mew=mp_mew, mfc=mp_mfc,\
-                    mfcalt=mp_mfcalt, ms=mp_ms)
-        ax.plot(self.axes.centers[0], fit, scalex=fp_scalex, scaley=fp_scaley, data=fp_data, alpha=fp_alpha, aa=fp_aa, \
-                    c=fp_c, ds=fp_ds, ls=fp_ls, lw=fp_lw, mec=fp_mec, mew=fp_mew, mfc=fp_mfc, mfcalt=fp_mfcalt, ms=fp_ms)
+        ax.errorbar(self.axes.centers[0], self.view(), yerr, **eb_kwargs)
+        ax.plot(self.axes.centers[0], values, **vp_kwargs)
+        ax.plot(self.axes.centers[0], (self.view()+values)/2, **mp_kwargs)
+        ax.plot(self.axes.centers[0], fit, **fp_kwargs)
         
         fig.add_axes(ax)
         
@@ -245,19 +255,22 @@ class Hist(BaseHist):
         left_edge = self.axes.edges[0][0]
         right_edge = self.axes.edges[-1][-1]
         width = (right_edge - left_edge) / len(pulls)
-        pull_ax.bar(self.axes.centers[0], pulls, width=width, bottom=bar_bottom, align=bar_align, data=bar_data,\
-                    alpha=bar_alpha, aa=bar_aa, ec=bar_ec, fc=bar_fc, ls=bar_ls, lw=bar_lw)
+        pull_ax.bar(self.axes.centers[0], pulls, width=width, **bar_kwargs)
         
         patch_height = max(np.abs(pulls)) / pp_num
         patch_width = width * len(pulls)
         for i in range(pp_num):
+            # gradient color patches
+            if "alpha" in pp_kwargs:
+                pp_kwargs["alpha"] *= np.power(.618,i)
+            else:
+                pp_kwargs["alpha"] = .618 * np.power(.618,i)
+                
             upRect_startpoint = [left_edge, i*patch_height]
-            upRect = patches.Rectangle(upRect_startpoint, patch_width, patch_height, angle=pp_angle,\
-                                       alpha=pp_alpha*np.power(.618,i), aa=pp_aa, ec=pp_ec, fc=pp_fc, ls=pp_ls, lw=pp_lw)
+            upRect = patches.Rectangle(upRect_startpoint, patch_width, patch_height, **pp_kwargs)
             pull_ax.add_patch(upRect)
             downRect_startpoint = [left_edge, -(i+1)*patch_height]
-            downRect = patches.Rectangle(downRect_startpoint, patch_width, patch_height, angle=pp_angle,\
-                                       alpha=pp_alpha*np.power(.618,i), aa=pp_aa, ec=pp_ec, fc=pp_fc, ls=pp_ls, lw=pp_lw)
+            downRect = patches.Rectangle(downRect_startpoint, patch_width, patch_height, **pp_kwargs)
             pull_ax.add_patch(downRect)
 
         plt.xlim(left_edge, right_edge)
