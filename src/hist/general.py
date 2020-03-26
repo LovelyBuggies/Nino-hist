@@ -201,34 +201,55 @@ class Hist(BaseHist):
         '''
         Keyword Argument Conversion: convert the keywork arguments to several independent arguments
         '''
+        # error bar keyword arguments
         eb_kwargs = dict()
         for kw in kwargs.keys():
             if kw[:2] == 'eb':
                 eb_kwargs[kw[3:]] = kwargs[kw]
+                
+        for k in eb_kwargs:
+            kwargs.pop('eb_' + k)
         
+        # value plot keyword arguments
         vp_kwargs = dict()
         for kw in kwargs.keys():
             if kw[:2] == 'vp':
                 vp_kwargs[kw[3:]] = kwargs[kw]
         
+        for k in vp_kwargs:
+            kwargs.pop('vp_' + k)
+        
+        # mean plot keyword arguments
         mp_kwargs = dict()
         for kw in kwargs.keys():
             if kw[:2] == 'mp':
                 mp_kwargs[kw[3:]] = kwargs[kw]
-                
+        
+        for k in mp_kwargs:
+            kwargs.pop('mp_' + k)
+        
+        # fit plot keyword arguments
         fp_kwargs = dict()
         for kw in kwargs.keys():
             if kw[:2] == 'fp':
                 fp_kwargs[kw[3:]] = kwargs[kw]
         
+        for k in fp_kwargs:
+            kwargs.pop('fp_' + k)
+        
+        # bar plot keyword arguments
         bar_kwargs = dict()
         for kw in kwargs.keys():
             if kw[:3] == 'bar':
                 # disable bar width arguments
                 if kw == 'bar_width': 
-                    raise KeyError("Bar width not needed.")
+                    raise KeyError("'bar_width' not needed.")
                 bar_kwargs[kw[4:]] = kwargs[kw]
-                
+        
+        for k in bar_kwargs:
+            kwargs.pop('bar_' + k)
+        
+        # patch plot keyword arguments
         pp_kwargs, pp_num = dict(), 3
         for kw in kwargs.keys():
             if kw[:2] == 'pp':
@@ -237,6 +258,16 @@ class Hist(BaseHist):
                     pp_num = kwargs[kw]
                     continue
                 pp_kwargs[kw[3:]] = kwargs[kw]
+        
+        if 'pp_num' in kwargs:
+            kwargs.pop('pp_num')
+        for k in pp_kwargs:
+            kwargs.pop('pp_' + k)
+                
+        # judge whether some arguements left
+        if len(kwargs):
+            raise TypeError(f"\'{list(kwargs.keys())[0]}\' not needed.")
+        
         
         '''
         Main: plot the pulls using Matplotlib errorbar and plot methods
