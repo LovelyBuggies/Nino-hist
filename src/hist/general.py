@@ -226,7 +226,7 @@ class Hist(BaseHist):
             if kw[:3] == 'bar':
                 # disable bar width arguments
                 if kw == 'bar_width': 
-                    continue
+                    raise KeyError("Bar width not needed.")
                 bar_kwargs[kw[4:]] = kwargs[kw]
                 
         pp_kwargs, pp_num = dict(), 3
