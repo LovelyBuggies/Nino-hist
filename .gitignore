@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # PNG files
-notebooks/img/
+notebooks/img/*.png
 
 # C extensions
 *.so
