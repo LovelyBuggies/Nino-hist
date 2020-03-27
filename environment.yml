@@ -1,0 +1,8 @@
+name: vector
+channels:
+  - conda-forge
+dependencies:
+  - pip >=18
+  - pip:
+    - -r requirements.txt
+    - -e .
