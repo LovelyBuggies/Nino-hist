@@ -1,28 +1,46 @@
 ## Installation
 
-The recommended way of setting up a development environment:
+### PyPI
+
+You can set up a development environment using PyPI.
 
 ```bash
-python3 -m venv .env            # Make a new environment in ./.env/
-source .env/bin/activate        # Use the new environment
-pip install -r requirements.txt # Install the package requirements
-pip install -e .                # Install this package in editable mode
-python -m ipykernel install --user --name nino-hist    # Install nino-hist jupyter kernel
+$ python3 -m venv .env            # Make a new environment in ./.env/
+$ source .env/bin/activate        # Use the new environment
+(.env)$ pip install -r requirements.txt # Install the package requirements
+(.env)$ pip install -e .                # Install this package in editable mode
+(.env)$ python -m ipykernel install --user --name nino-hist    # Install nino-hist jupyter kernel
 ```
 
-> If you want to use Conda, go ahead. Also feel free to use a different
-directory name, etc. We will be requiring Python 3 here, at least 3.6 or
-better.
-
-You'll need to run `source .env/bin/activate` if you open a new shell. You can
-use `deactivate` to turn off the environment in your current shell (or just
-open a new one).
+You'll need to run `$ source .env/bin/activate` if you open a new shell. You can
+use `(.env)$ deactivate` to turn off the environment in your current shell `$ pwd`.
 
 The final line installs the package into your environment so that you can run
 the code from anywhere as long as the environment is activated.
 
 If, while working on the project, you need any other python packages, such as
-for plotting, *add them to the requirements.txt* or in *setup.py*.
+for plotting, add them to the requirements.txt or in setup.py and re-install requirements.txt `(.env)$ pip install -r requirements.txt`.
+
+Just `$ rm -r .env` if you want to remove this enviroment, and `$ jupyter kernelspec nino-hist` to remove kernel correspondingly.
+
+### Conda
+
+You can set up a development environment using Conda. This is the recommended way, because you can import some large binaries unavailable on PyPI, such as root, and test the latest version.
+
+```bash
+$ conda env create -f environment.yml -n nino-hist
+$ conda activate nino-hist
+(nino-hist)$ python3 -m ipykernel install --name nino-hist
+```
+
+You'll need to re-activate `$ conda activate nino-hist` if you open a new shell. You can use `(nino-hist)$ deactivate` to turn off the environment in your current shell (or just open a new one).
+
+If, while working on the project, you need any other python packages, such as
+for plotting, *add them to the requirements.txt*, deactivating the environment `(nino-hist)$ conda deactivate` and updating it `$ conda env update -f environment.yml -n nino-hist`.
+
+If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist) $python3 -m ipykernel install --name nino-hist-conda`.
+
+Use `$ conda env remove -n nino-hist` to remove the conda environment if you do not need this anymore. And do not forget`$ jupyter kernelspec nino-hist` to remove kernel correspondingly (if you are using a different kernel name, `$ jupyter kernelspec list` to see your kernels).
 
 ## Code
 
