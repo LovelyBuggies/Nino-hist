@@ -12,20 +12,17 @@ $ source .env/bin/activate        # Use the new environment
 (.env)$ python -m ipykernel install --user --name nino-hist    # Install nino-hist jupyter kernel
 ```
 
-You'll need to run `$ source .env/bin/activate` if you open a new shell. You can
-use `(.env)$ deactivate` to turn off the environment in your current shell `$ pwd`.
+You'll need to run `$ source .env/bin/activate` if you open a new shell. You can use `(.env)$ deactivate` to turn off the environment in your current shell.
 
-The final line installs the package into your environment so that you can run
-the code from anywhere as long as the environment is activated.
+The final line installs the package into your environment so that you can run the code from anywhere as long as the environment is activated.
 
-If, while working on the project, you need any other python packages, such as
-for plotting, add them to the requirements.txt or in setup.py and re-install requirements.txt `(.env)$ pip install -r requirements.txt`.
+If, while working on the project, you need any other python packages, such as for plotting, add them to the "requirements.txt" or in "setup.py" and re-install requirements `(.env)$ pip install -r requirements.txt`.
 
 Just `$ rm -r .env` if you want to remove this enviroment, and `$ jupyter kernelspec nino-hist` to remove kernel correspondingly.
 
 ### Conda
 
-You can set up a development environment using Conda. This is the recommended way, because you can import some large binaries unavailable on PyPI, such as root, and test the latest version.
+You can also set up a development environment using Conda. This is the recommended way, because you can import some large binaries unavailable on PyPI, such as root, and test the latest version.
 
 ```bash
 $ conda env create -f environment.yml -n nino-hist
@@ -33,10 +30,9 @@ $ conda activate nino-hist
 (nino-hist)$ python3 -m ipykernel install --name nino-hist
 ```
 
-You'll need to re-activate `$ conda activate nino-hist` if you open a new shell. You can use `(nino-hist)$ deactivate` to turn off the environment in your current shell (or just open a new one).
+You'll need to re-activate `$ conda activate nino-hist` if you open a new shell. You can use `(nino-hist)$ deactivate` to turn off the environment in your current shell.
 
-If, while working on the project, you need any other python packages, such as
-for plotting, *add them to the requirements.txt*, deactivating the environment `(nino-hist)$ conda deactivate` and updating it `$ conda env update -f environment.yml -n nino-hist`.
+If, while working on the project, you need any other python packages, such as for plotting, add them to the "requirements.txt" or in "environment.yml", deactivating the environment `(nino-hist)$ conda deactivate` and updating it `$ conda env update -f environment.yml -n nino-hist`.
 
 If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist)$ python3 -m ipykernel install --name nino-hist-conda`.
 
@@ -44,18 +40,11 @@ Use `$ conda env remove -n nino-hist` to remove the conda environment if you do 
 
 ## Code
 
-The library is in `/src/hist`. You will be editing it to expand the histogram
-features, or plotting features, or both. Select one of the below tasks (or do
-both if you really want to, but only one required for full consideration).
+The library is in `/src/hist`. You will be editing it to expand the histogram features, or plotting features, or both. Select one of the below tasks (or do both if you really want to, but only one required for full consideration).
 
 ### Features to add (Project 1)
 
-For this project, you'll want to expand NamedHist to support named-axis
-histograms. The idea is this (and is
-[taken](https://github.com/CoffeaTeam/coffea/tree/master/coffea/hist) directly
-from the [Coffea](https://github.com/CoffeaTeam/coffea) project): All axes have
-a *required* name. These names are used (and generally required) throughout the
-interface. For example:
+For this project, you'll want to expand NamedHist to support named-axis histograms. The idea is this (and is [taken](https://github.com/CoffeaTeam/coffea/tree/master/coffea/hist) directly from the [Coffea](https://github.com/CoffeaTeam/coffea) project): All axes have a *required* name. These names are used (and generally required) throughout the interface. For example:
 
 ```python
 # Data generation
@@ -88,8 +77,7 @@ valid_and_invalid = h[:, :, ::bh.sum]                 # All (valid and invalid)
 valid_and_invalid = h[{2:slice(None, None, bh.sum)}]   # Alternate way to do the same thing
 ```
 
-> Note: The metadata here is a bit more complex than you might normally make it
-> just to illustrate how it will be internally stored in Hist.
+> Note: The metadata here is a bit more complex than you might normally make it just to illustrate how it will be internally stored in Hist.
 
 ```python
 # Hypothetical Hist
@@ -107,24 +95,15 @@ h.fill(x=x, y=y, valid=valid)
 valid_and_invalid = h[{"valid": slice(None, None, bh.sum)}]
 ```
 
-So, for this task, you should make sure `NamedHist` a) requires name to be set on
-any axis, b) requires keyword fills by name, and c) allows (or requires)
-`__getitem__` access by named dict key instead of axis number. You should also
-implement one shortcut axis type, `bool`, which is just a shortcut for making
-an Integer axis with underflow and overflow turned off, and with only two bins
-starting at zero. I've started this project for you by setting up "name" for
-Regular axis, feel free to look at that to get started.
+So, for this task, you should make sure `NamedHist` a) requires name to be set on any axis, b) requires keyword fills by name, and c) allows (or requires) `__getitem__` access by named dict key instead of axis number. You should also implement one shortcut axis type, `bool`, which is just a shortcut for making an Integer axis with underflow and overflow turned off, and with only two bins starting at zero. I've started this project for you by setting up "name" for Regular axis, feel free to look at that to get started.
 
 
 ### Plots to add (Project 2)
 
-Histograms in HEP often use pull plots ([like this
-one](https://cds.cern.ch/record/1969801/files/Figure2a.png)). Let's play with a
-basic histogram plot method that adds a pull plot method to a hist object.
+Histograms in HEP often use pull plots ([like this one](https://cds.cern.ch/record/1969801/files/Figure2a.png)). Let's play with a basic histogram plot method that adds a pull plot method to a hist object.
 
 
-Let's call the method `pull_plot` (eventually, we might call it `plot.pull`, to
-be like Pandas), but this is fine for now). Let's propose a possible interface:
+Let's call the method `pull_plot` (eventually, we might call it `plot.pull`, to be like Pandas), but this is fine for now. Let's propose a possible interface:
 
 ```python
 from hist import NamedHist, axis
@@ -141,10 +120,7 @@ def pdf(x):
 ax1, ax2 = h.pull_plot(pdf)
 ```
 
-This involves a) adding `title` as an axis option (`name` is already added for
-you, just expand on that), b) adding the `pull_plot` method, and c) trying to
-make the final output look as nice as you can. Here is my recommended
-interface:
+This involves: a) adding `title` as an axis option (`name` is already added for you, just expand on that), b) adding the `pull_plot` method, and c) trying to make the final output look as nice as you can. Here is my recommended interface:
 
 ```python
     def pull_plot(self, callable, *, ax=None, pull_ax=None): # add more formatting options here as needed!
@@ -178,30 +154,19 @@ dots instead of bars) for the main plot, and a 3:1 ratio between the plots.
 > not really on the calculation of the pull. Just a simple function for
 > comparison will do for now.
 
-You did not come up with a perfect API that covers every possible use case (I
-would assume). Please write down a couple of sentences about potential
-improvements to make it more general.
+You did not come up with a perfect API that covers every possible use case (I would assume). Please write down a couple of sentences about potential improvements to make it more general.
 
 ## Notebooks
 
-Write one Jupyter notebook showing off your new feature(s) or new plot. Unlike
-most Jupyter notebooks, it is okay to save the output in the notebook so that it
-can be seen quickly.
+Write one Jupyter notebook showing off your new feature(s) or new plot. Unlike most Jupyter notebooks, it is okay to save the output in the notebook so that it can be seen quickly.
 
 ## Tests
 
-This is mostly there to verify you understand basic testing procedures. Testing
-is already set up, all you have to do is **add tests for the features you add**. I
-am lightly recommending native pytest-style testing, but if you have a
-preference for a different style, go for it as long as pytest can still run it.
+This is mostly there to verify you understand basic testing procedures. Testing is already set up, all you have to do is **add tests for the features you add**. I am lightly recommending native pytest-style testing, but if you have a preference for a different style, go for it as long as pytest can still run it.
 
-If you focus on plotting, at least add one non-plotting feature + test, but the
-plots themselves are notoriously hard to test, so don't worry too much about
-that unless you have a good idea for a way to test a plot.
+If you focus on plotting, at least add one non-plotting feature + test, but the plots themselves are notoriously hard to test, so don't worry too much about that unless you have a good idea for a way to test a plot.
 
 ## Formatting
 
-I like using [pre-commit](https://pre-commit.com) to handle style. The styling
-is checked in CI; you don't have to make this check pass if you don't want to
-(though adding and enabling pre-commit is easy).
+I like using [pre-commit](https://pre-commit.com) to handle style. The styling is checked in CI; you don't have to make this check pass if you don't want to (though adding and enabling pre-commit is easy).
 
