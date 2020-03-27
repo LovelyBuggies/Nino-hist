@@ -18,7 +18,7 @@ The final line installs the package into your environment so that you can run th
 
 If, while working on the project, you need any other python packages, such as for plotting, add them to the "requirements.txt" or in "setup.py" and re-install requirements `(.env)$ pip install -r requirements.txt`.
 
-Just `$ rm -r .env` if you want to remove this enviroment, and `$ jupyter kernelspec nino-hist` to remove kernel correspondingly.
+Just `$ rm -r .env` if you want to remove this enviroment, and `$ jupyter kernelspec remove nino-hist` to remove kernel correspondingly.
 
 ### Conda
 
