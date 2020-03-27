@@ -36,7 +36,7 @@ If, while working on the project, you need any other python packages, such as fo
 
 If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist)$ python3 -m ipykernel install --name nino-hist-conda`.
 
-Use `$ conda env remove -n nino-hist` to remove the conda environment if you do not need this anymore. And do not forget`$ jupyter kernelspec nino-hist` to remove kernel correspondingly (if you are using a different kernel name, `$ jupyter kernelspec list` to see your kernels).
+Use `$ conda env remove -n nino-hist` to remove the conda environment if you do not need this anymore. And do not forget`$ jupyter kernelspec remove nino-hist` to remove kernel correspondingly (if you are using a different kernel name, `$ jupyter kernelspec list` to see your kernels).
 
 ## Code
 
