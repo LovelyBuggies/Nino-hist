@@ -1,4 +1,4 @@
-name: vector
+name: nino-hist
 channels:
   - conda-forge
 dependencies:
