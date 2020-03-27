@@ -19,7 +19,9 @@ The final line installs the package into your environment so that you can run
 the code from anywhere as long as the environment is activated.
 
 If, while working on the project, you need any other python packages, such as
-for plotting, *add them to the requirements.txt* or in *setup.py*.
+for plotting, add them to the requirements.txt or in setup.py and re-install requirements.txt `(.env)$ pip install -r requirements.txt`.
+
+Just `$ rm -r .env` if you want to remove this enviroment, and `$ jupyter kernelspec nino-hist` to remove kernel correspondingly.
 
 ### Conda
 
@@ -36,7 +38,9 @@ You'll need to re-activate `$ conda activate nino-hist` if you open a new shell.
 If, while working on the project, you need any other python packages, such as
 for plotting, *add them to the requirements.txt*, deactivating the environment `(nino-hist)$ conda deactivate` and updating it `$ conda env update -f environment.yml -n nino-hist`.
 
-If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist) $python3 -m ipykernel install --name nino-hist-conda`
+If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist) $python3 -m ipykernel install --name nino-hist-conda`.
+
+Use `$ conda env remove -n nino-hist` to remove the conda environment if you do not need this anymore. And do not forget`$ jupyter kernelspec nino-hist` to remove kernel correspondingly (if you are using a different kernel name, `$ jupyter kernelspec list` to see your kernels).
 
 ## Code
 
