@@ -23,7 +23,7 @@ for plotting, *add them to the requirements.txt* or in *setup.py*.
 
 ### Conda
 
-You can set up a development environment using Conda.
+You can set up a development environment using Conda. This is the recommended way, because you can import some large binaries unavailable on PyPI, such as root, and test the latest version.
 
 ```bash
 $ conda env create -f environment.yml -n nino-hist
@@ -34,7 +34,7 @@ $ conda activate nino-hist
 You'll need to re-activate `$ conda activate nino-hist` if you open a new shell. You can use `(nino-hist)$ deactivate` to turn off the environment in your current shell (or just open a new one).
 
 If, while working on the project, you need any other python packages, such as
-for plotting, *add them to the requirements.txt* and reset the environment `$ conda env update -f environment.yml -n nino-hist`.
+for plotting, *add them to the requirements.txt*, deactivating the environment `(nino-hist)$ conda deactivate` and updating it `$ conda env update -f environment.yml -n nino-hist`.
 
 If your are using a Python3 virtul enviroment at the same time, you are recommended to use a different Jupyter kernel name to distinguish them `(nino-hist) $python3 -m ipykernel install --name nino-hist-conda`
 
